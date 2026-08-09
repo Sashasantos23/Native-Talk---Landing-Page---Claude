@@ -1,136 +1,135 @@
-import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { MessageCircle, ArrowDown } from "lucide-react";
-import sashaPhoto from "@/assets/sasha-photo.png";
-import { VoiceWave } from "@/components/VoiceWave";
-import { WA_BOOK } from "@/lib/whatsapp";
-
-const EASE = [0.16, 1, 0.3, 1] as const;
+import { motion } from "framer-motion";
+import sashaPhoto from "@/assets/sasha-hero-cutout.png";
 
 const HeroSection = () => {
-  const reduce = useReducedMotion();
-  const [drawn, setDrawn] = useState(false);
-
-  useEffect(() => {
-    const id = requestAnimationFrame(() => setDrawn(true));
-    return () => cancelAnimationFrame(id);
-  }, []);
-
-  const rise = (delay: number) => ({
-    initial: reduce ? { opacity: 0 } : { opacity: 0, y: 24 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.75, delay, ease: EASE },
-  });
-
   return (
-    <section className="relative flex min-h-[100dvh] flex-col overflow-hidden bg-ink text-paper">
-      {/* Subtle red warmth from top-right — brand-accurate, not "AI purple" */}
+    <section className="relative flex min-h-screen flex-col overflow-hidden bg-navy">
+      {/* Stars pattern via CSS */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          background:
-            "radial-gradient(100% 70% at 90% 0%, oklch(0.56 0.205 22 / 0.14), transparent 55%)",
-        }}
-      />
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
+          backgroundSize: "40px 40px"
+        }} />
+      
+      {/* Red stripes accent */}
+      <div
+        className="absolute right-0 top-0 h-full w-1.5 opacity-60"
+        style={{
+          background: "repeating-linear-gradient(180deg, hsl(var(--red)) 0px, hsl(var(--red)) 48px, transparent 48px, transparent 96px)"
+        }} />
+      
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl flex-1 items-center gap-10 px-5 pb-16 pt-28 sm:px-7 md:grid-cols-[1.05fr_0.95fr] md:gap-8 md:px-10 md:pt-24 lg:px-12">
-        {/* ── Text ── */}
-        <div className="flex flex-col items-start">
-          <motion.div
-            {...rise(0.05)}
-            className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-paper/15 bg-paper/[0.04] py-1.5 pl-3 pr-4 text-[0.78rem] font-medium text-paper/80"
-          >
-            {/* Gold wave on navy */}
-            <VoiceWave className="h-3 w-7" colorClass="bg-gold" />
-            Conversação real, do jeito nativo
-          </motion.div>
+      <div className="relative z-10 flex flex-1 flex-col md:flex-row md:items-center md:gap-8 lg:gap-12">
+        {/* Text content */}
+        <div className="flex flex-1 flex-col items-start justify-center px-5 pb-12 pt-24 sm:px-7 sm:pt-28 md:px-12 md:py-20 md:pt-32 lg:px-16">
 
-          <h1 className="font-display text-[clamp(2.4rem,6.4vw,4.6rem)] font-extrabold leading-[1.02] tracking-[-0.03em]">
-            <motion.span className="block" {...rise(0.12)}>
-              Você entende inglês.
-            </motion.span>
-            <motion.span className="block" {...rise(0.22)}>
-              Só falta{" "}
-              <span className={`ink-underline ink-underline--draw ${drawn ? "is-drawn" : ""}`}>
-                falar
-              </span>
-              .
-            </motion.span>
-          </h1>
+          <motion.h1
+            className="mb-5 font-serif text-[clamp(2rem,7vw,5rem)] font-black leading-[1.08] tracking-tight text-white sm:mb-7"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}>
+            
+            Você sabe inglês.{" "}
+            <br />
+            <em className="shimmer-gold">Só não consegue</em>
+            <br />
+            <em className="shimmer-gold">falar ainda.</em>
+          </motion.h1>
 
           <motion.p
-            {...rise(0.34)}
-            className="mt-6 max-w-[34rem] text-[1.02rem] leading-relaxed text-paper/70"
-          >
-            Aulas de conversação 1 a 1 com Sasha, americana nativa dos EUA. Você
-            fala desde o primeiro dia, sem sotaque artificial e sem método
-            engessado.
+            className="mb-3 max-w-[520px] text-base font-light leading-relaxed text-white/70 sm:mb-4 sm:text-[16px]"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}>Aulas de conversação com uma americana nativa dos EUA — sem sotaque artificial, sem método engessado. Inglês do jeito que é falado no dia a dia.
           </motion.p>
 
+          {/* CHANGE 2 - Result line */}
+          <motion.p
+            className="mb-8 text-[0.85rem] font-medium text-gold/80 sm:mb-10"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.32 }}>
+            A maioria dos alunos sente diferença nas primeiras semanas.
+          </motion.p>
+
+          {/* CHANGE 1 - CTA buttons above the fold */}
           <motion.div
-            {...rise(0.44)}
-            className="mt-9 flex w-full flex-col gap-3 lg:w-auto lg:flex-row lg:items-center"
-          >
+            className="mb-6 flex w-full flex-col gap-3 sm:mb-8 sm:w-auto sm:flex-row sm:gap-4"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.35 }}>
+            
             <a
-              href={WA_BOOK}
+              href="https://wa.me/5519987681112?text=Hi%21%20I%27m%20interested%20in%20English%20classes%20with%20NativeTalk%21"
               target="_blank"
               rel="noopener noreferrer"
-              className="wa-glow inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-whatsapp px-7 py-4 text-[1.02rem] font-semibold text-white transition-transform duration-150 hover:-translate-y-0.5 active:scale-[0.98]"
-            >
-              <MessageCircle className="h-5 w-5" strokeWidth={2.5} />
-              Agendar aula gratuita
+              className="wa-pulse inline-flex items-center justify-center gap-2.5 rounded-full bg-whatsapp px-6 py-3.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:scale-105 sm:px-8 sm:py-4 sm:text-base">
+              
+              <span className="text-lg sm:text-xl">💬</span> Agendar pelo WhatsApp
             </a>
             <a
-              href="#como-funciona"
-              className="group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-paper/20 px-6 py-4 text-[1.02rem] font-medium text-paper/90 transition-colors duration-200 hover:border-paper/40 hover:bg-paper/[0.04]"
-            >
-              Como funciona
-              <ArrowDown className="h-4 w-4 transition-transform duration-200 group-hover:translate-y-0.5" />
+              href="#modalities"
+              className="inline-flex items-center justify-center gap-2.5 rounded-xl border border-white/25 bg-transparent px-6 py-3.5 text-sm font-medium text-white transition-all hover:border-gold hover:bg-gold/[0.08] sm:px-8 sm:py-4 sm:text-base">
+              
+              Ver modalidades ↓
             </a>
           </motion.div>
 
-          <motion.p {...rise(0.54)} className="mt-5 text-[0.85rem] text-paper/45">
-            Primeira aula gratuita. Sem cartão, sem compromisso.
+          {/* CHANGE 3 - Social proof strip */}
+          <motion.div
+            className="mb-8 flex flex-wrap items-center gap-1.5 sm:mb-12"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.38 }}>
+            <span className="text-[0.8rem] text-gold/70">★★★★★</span>
+            <span className="text-[0.8rem] text-gold/60">+500 alunos atendidos · Resultados reais</span>
+          </motion.div>
+
+          <motion.p
+            className="max-w-[520px] border-l-2 border-gold pl-4 text-sm font-light leading-relaxed text-white/55"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}>
+            Se você entende inglês mas trava na hora de falar, você não está sozinho — e esse bloqueio tem solução.
           </motion.p>
         </div>
 
-        {/* ── Photo ── */}
+        {/* Photo */}
         <motion.div
-          initial={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.96 }}
+          className="flex flex-col items-center px-5 pb-32 sm:px-7 md:items-end md:pb-0 md:pr-12 lg:pr-16"
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.2, ease: EASE }}
-          className="relative mx-auto w-full max-w-[24rem] md:mx-0 md:ml-auto"
-        >
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-paper/10">
-            <img
-              src={sashaPhoto}
-              alt="Sasha Wigginton, professora americana nativa da Native Talk"
-              className="aspect-[4/5] w-full object-cover object-[50%_18%]"
-            />
-            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/80 to-transparent" />
+          transition={{ duration: 0.8, delay: 0.3 }}>
+          
+          <div className="relative">
+            <div className="absolute -inset-3 rounded-2xl bg-gold/20 blur-2xl" />
+            <div className="relative h-80 w-64 overflow-hidden rounded-2xl border-2 border-gold shadow-2xl sm:h-96 sm:w-72 md:h-[480px] md:w-[360px] lg:h-[560px] lg:w-[420px]">
+              {/* subtle navy depth behind the cut-out subject */}
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at 50% 35%, hsl(var(--navy) / 0.15) 0%, hsl(var(--navy) / 0.75) 75%), inset 0 0 60px hsl(var(--navy))"
+                }} />
+              <img
+                src={sashaPhoto}
+                alt="Sasha Wigginton – Professora NativeTalk"
+                className="relative h-full w-full object-contain object-bottom drop-shadow-[0_12px_30px_rgba(0,0,0,0.45)]" />
+            </div>
+          </div>
+          <div className="mt-4 text-center md:text-right">
+            <p className="font-serif text-2xl font-bold text-white sm:text-3xl md:text-4xl">Sasha Wigginton</p>
+            <div className="mt-2 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/15 px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-gold sm:px-4 sm:py-2 sm:text-[0.78rem] shadow-md">
+              ★Native English Mentor★
+            </div>
           </div>
 
-          {/* Live name card — gold wave + gold border accent */}
-          <motion.div
-            initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.6, ease: EASE }}
-            className="absolute -bottom-5 left-4 right-8 flex items-center gap-3 rounded-2xl border border-gold/30 bg-ink-soft/85 px-4 py-3 backdrop-blur-md sm:left-6"
-          >
-            <VoiceWave className="h-7 w-8 shrink-0" colorClass="bg-gold" />
-            <div className="min-w-0">
-              <p className="font-display text-[0.98rem] font-bold leading-tight text-paper">
-                Sasha Wigginton
-              </p>
-              <p className="truncate text-[0.74rem] text-paper/55">
-                Nativa dos EUA · Americana-SP &amp; online
-              </p>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
-    </section>
-  );
+
+    </section>);
+
 };
 
 export default HeroSection;

@@ -1,54 +1,82 @@
-import { ArrowRight } from "lucide-react";
-import { Reveal } from "@/components/Reveal";
+import { motion } from "framer-motion";
 
-const pains = [
-  "Você entende tudo, mas na hora de responder a cabeça apaga.",
-  "Em reuniões ou viagens, você deixa os outros falarem por você.",
-  "Já tentou apps, cursos e escolas, mas nada virou fluência de verdade.",
-  "Sente que o inglês está te limitando no trabalho. E isso incomoda.",
+const painPoints = [
+  { emoji: "😶", text: "Você entende tudo, mas na hora de responder a cabeça apaga." },
+  { emoji: "😰", text: "Em reuniões ou viagens, você deixa os outros falar por você." },
+  { emoji: "🏫", text: "Você já tentou várias escolas de inglês e cursos, mas nada virou fluência de verdade." },
+  { emoji: "💼", text: "Sente que o inglês está te limitando profissionalmente — e isso incomoda." },
 ];
 
 const PainPointsSection = () => {
-  const scrollTo = (id: string) =>
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const scrollToHowItWorks = () => {
+    const el = document.getElementById("como-funciona");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <section className="bg-background px-5 py-20 sm:px-7 sm:py-24 md:px-10 md:py-28 lg:px-12">
-      <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
-        {/* Left: the message */}
-        <div className="md:sticky md:top-28 md:self-start">
-          <Reveal as="h2" className="font-display text-[clamp(1.9rem,3.6vw,2.9rem)] font-extrabold leading-[1.08] tracking-tight text-foreground">
-            Você estudou por anos e ainda trava na hora de falar.
-          </Reveal>
-          <Reveal as="p" delay={0.08} className="mt-5 max-w-md text-[1.02rem] leading-relaxed text-muted-foreground">
-            Não é falta de esforço, e não é o seu caso ser perdido. Nenhum método
-            te treinou no que importa de verdade: abrir a boca e se comunicar com
-            confiança. É exatamente aí que eu entro.
-          </Reveal>
-          <Reveal delay={0.16}>
-            <button
-              onClick={() => scrollTo("como-funciona")}
-              className="group mt-7 inline-flex items-center gap-2 text-[0.95rem] font-semibold text-flame-deep transition-colors hover:text-foreground"
+    <section className="bg-background px-5 py-16 sm:px-7 sm:py-20 md:px-12 lg:px-16">
+      <div className="mx-auto max-w-3xl">
+        <motion.div
+          className="mb-10 text-center sm:mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5 }}
+        >
+          <p className="mb-3 text-[0.75rem] font-semibold uppercase tracking-[0.15em] text-red sm:mb-4 sm:text-[0.78rem]">
+            Você não está sozinho
+          </p>
+          <h2 className="font-serif text-[clamp(1.8rem,4vw,3rem)] font-black leading-tight tracking-tight text-foreground">
+            A maioria dos alunos estudou por anos e ainda trava na hora de falar.
+          </h2>
+        </motion.div>
+
+        <motion.p
+          className="mb-10 text-center text-base leading-relaxed text-muted-foreground sm:mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          Você já investiu tempo, dinheiro e energia tentando aprender inglês. Mas nenhum método te treinou para o que realmente importa: abrir a boca e se comunicar com confiança. Esse é exatamente o ponto onde eu entro.
+        </motion.p>
+
+        <div className="flex flex-col gap-4 sm:gap-5">
+          {painPoints.map((point, i) => (
+            <motion.div
+              key={i}
+              className="flex items-start gap-4 rounded-xl border-l-4 border-red bg-card px-5 py-4 sm:px-6 sm:py-5"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
             >
-              Ver como a Native Talk resolve
-              <ArrowRight className="h-4 w-4 transition-transform duration-200 ease-out-quart group-hover:translate-x-1" />
-            </button>
-          </Reveal>
+              <span className="text-xl sm:text-2xl">{point.emoji}</span>
+              <p className="text-[0.95rem] leading-relaxed text-foreground sm:text-base">
+                {point.text}
+              </p>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Right: the pains */}
-        <ul className="divide-y divide-border">
-          {pains.map((pain, i) => (
-            <Reveal as="li" key={pain} delay={i * 0.07} className="flex items-baseline gap-5 py-6 first:pt-0">
-              <span className="font-display text-[1.05rem] font-bold tabular-nums text-flame">
-                0{i + 1}
-              </span>
-              <p className="text-[1.15rem] font-medium leading-snug text-foreground/90 sm:text-[1.3rem]">
-                {pain}
-              </p>
-            </Reveal>
-          ))}
-        </ul>
+        {/* CHANGE 4 - Bridge CTA */}
+        <motion.div
+          className="mt-10 flex flex-col items-center gap-4 text-center sm:mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <p className="text-base font-semibold text-foreground">
+            É exatamente isso que o NativeTalk resolve.
+          </p>
+          <button
+            onClick={scrollToHowItWorks}
+            className="inline-flex items-center gap-2 rounded-xl border border-foreground/20 bg-transparent px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-red hover:text-red cursor-pointer"
+          >
+            Ver como funciona →
+          </button>
+        </motion.div>
       </div>
     </section>
   );

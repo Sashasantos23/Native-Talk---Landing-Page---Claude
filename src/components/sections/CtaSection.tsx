@@ -1,52 +1,56 @@
-import { MessageCircle } from "lucide-react";
-import { Reveal } from "@/components/Reveal";
-import { VoiceWave } from "@/components/VoiceWave";
-import { WA_BOOK } from "@/lib/whatsapp";
+import { motion } from "framer-motion";
 
 const CtaSection = () => {
   return (
-    <section className="relative overflow-hidden bg-ink px-5 py-24 text-paper sm:px-7 sm:py-28 md:px-10 md:py-32 lg:px-12">
+    <section className="relative overflow-hidden px-5 py-16 text-center sm:px-7 sm:py-20 md:px-12 md:py-24 lg:px-16 bg-destructive border-0 border-none border-destructive">
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          background:
-            "radial-gradient(110% 90% at 50% 0%, oklch(0.645 0.19 38 / 0.2), transparent 60%)",
-        }}
-      />
-
-      <div className="relative mx-auto max-w-3xl text-center">
-        <Reveal className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-paper/15 bg-paper/[0.04] py-1.5 pl-3 pr-4 text-[0.8rem] font-medium text-paper/80">
-          <VoiceWave className="h-3 w-7" />
-          Vagas abertas esta semana
-        </Reveal>
-
-        <Reveal as="h2" delay={0.05} className="font-display text-[clamp(2rem,5vw,3.4rem)] font-extrabold leading-[1.04] tracking-tight text-paper">
-          Pronto pra <span className="ink-underline">falar</span> inglês com uma
-          nativa?
-        </Reveal>
-
-        <Reveal as="p" delay={0.12} className="mx-auto mt-6 max-w-xl text-[1.05rem] leading-relaxed text-paper/70">
-          Dê o primeiro passo agora. Atendo poucos alunos por semana pra garantir
-          atenção real a cada um. Sua primeira conversa pode mudar tudo.
-        </Reveal>
-
-        <Reveal delay={0.2} className="mt-10">
-          <a
-            href={WA_BOOK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="wa-glow inline-flex items-center gap-2.5 rounded-full bg-whatsapp px-8 py-4 text-[1.05rem] font-semibold text-white transition-transform duration-150 ease-out-quart hover:-translate-y-0.5 active:scale-[0.98]"
-          >
-            <MessageCircle className="h-5 w-5" strokeWidth={2.5} />
-            Agendar aula gratuita
-          </a>
-          <p className="mt-5 text-[0.85rem] text-paper/50">
-            Primeira aula gratuita. Sem cartão, sem compromisso.
-          </p>
-        </Reveal>
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)",
+          backgroundSize: "32px 32px"
+        }} />
+      
+      <div className="relative mx-auto max-w-3xl">
+        <motion.div
+          className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-gold sm:text-sm"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}>
+          🟡 Vagas abertas esta semana — agenda limitada
+        </motion.div>
+        <motion.h2
+          className="mb-3 font-serif text-[clamp(1.8rem,4vw,3.2rem)] font-black text-white sm:mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.05 }}>
+          Pronto(a) para falar inglês com uma nativa?
+        </motion.h2>
+        <motion.p
+          className="mb-8 text-[0.95rem] font-light text-white/80 sm:mb-10 sm:text-[1.05rem]"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}>
+          Dê o primeiro passo agora. Atendo poucos alunos por semana para garantir atenção real a cada um. Sua primeira conversa pode mudar tudo.
+        </motion.p>
+        <motion.a
+          href="https://wa.me/5519987681112?text=Hi%21%20I%27m%20interested%20in%20English%20classes%20with%20NativeTalk%21"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="wa-pulse inline-flex items-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-white transition-all hover:-translate-y-0.5 hover:scale-105 sm:gap-3 sm:px-10 sm:py-5 sm:text-lg font-serif bg-whatsapp"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}>
+          
+          <span className="text-lg sm:text-xl">💬</span>
+          Quero destravar meu inglês agora!
+        </motion.a>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default CtaSection;

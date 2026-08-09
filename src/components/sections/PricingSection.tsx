@@ -1,128 +1,150 @@
+import { motion } from "framer-motion";
 import { MessageCircle, Check } from "lucide-react";
-import { Reveal } from "@/components/Reveal";
-import { waLink, WA_BOOK } from "@/lib/whatsapp";
 
-const plans = [
-  {
-    type: "Online",
-    price: "100",
-    tag: "Mais popular",
-    highlight: true,
-    description: "Via Google Meet ou Zoom. Mesma qualidade da aula presencial, no conforto da sua casa.",
-    features: [
-      "Aula 100% em inglês com professora nativa",
-      "Feedback personalizado a cada aula",
-      "Horários flexíveis pelo WhatsApp",
-      "Sem fidelidade obrigatória",
-    ],
-    cta: "Agendar aula online",
-    href: waLink("Oi Sasha! Quero agendar minha aula online experimental gratuita."),
-  },
-  {
-    type: "Presencial",
-    price: "115",
-    tag: "Americana, SP",
-    highlight: false,
-    description: "Para quem é da região e prefere o cara a cara. Mais espaço para prática e correção em tempo real.",
-    features: [
-      "Aula 100% em inglês com professora nativa",
-      "Correção e feedback imediatos",
-      "Horários flexíveis pelo WhatsApp",
-      "Sem fidelidade obrigatória",
-    ],
-    cta: "Agendar aula presencial",
-    href: waLink("Oi Sasha! Quero agendar minha aula presencial experimental gratuita em Americana."),
-  },
-];
+const WHATSAPP_URL =
+  "https://wa.me/5519987681112?text=Ol%C3%A1%2C+gostaria+de+agendar+uma+aula+experimental+gratuita!";
+
+const plan = {
+  type: "Online / Presencial",
+  flag: "🖥️ 📍",
+  price: "100",
+  tag: null,
+  description:
+    "Via Google Meet, Zoom — ou presencial em Americana, SP. A mesma qualidade e atenção de sempre, no formato que funciona melhor para você.",
+  features: [
+    "Aula 100% em inglês com professora nativa",
+    "Google Meet, Zoom ou presencial",
+    "Feedback personalizado a cada aula",
+    "Horários flexíveis pelo WhatsApp",
+    "Sem fidelidade obrigatória",
+  ],
+  cta: "Agendar aula gratuita",
+};
+
 
 const PricingSection = () => {
   return (
-    <section id="preco" className="bg-paper-2 px-5 py-20 sm:px-7 sm:py-24 md:px-10 md:py-28 lg:px-12">
-      <div className="mx-auto max-w-5xl">
-        <Reveal className="max-w-2xl">
-          <h2 className="font-display text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.05] tracking-tight text-foreground">
+    <section id="preco" className="bg-card px-5 py-16 sm:px-7 sm:py-20 md:px-12 md:py-24 lg:px-16">
+      <div className="mx-auto max-w-4xl">
+        {/* Header */}
+        <motion.div
+          className="mb-12 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5 }}
+        >
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.15em] text-red">
+            Investimento
+          </p>
+          <h2 className="mb-4 font-serif text-[clamp(1.8rem,4vw,3rem)] font-black leading-tight text-foreground">
             Transparente e justo.
           </h2>
-          <p className="mt-4 text-[1.02rem] leading-relaxed text-muted-foreground">
-            Menos do que um curso online que você nunca termina, com atenção real
-            aula após aula. A primeira é por nossa conta.
+          <p className="mx-auto max-w-md text-base leading-relaxed text-muted-foreground">
+            Escolha o formato que funciona melhor para você. Online ou presencial, a qualidade é a mesma.
           </p>
-        </Reveal>
+        </motion.div>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2">
-          {plans.map((plan, i) => (
-            <Reveal
-              key={plan.type}
-              delay={i * 0.1}
-              className={`flex flex-col rounded-3xl bg-card p-8 sm:p-9 ${
-                plan.highlight
-                  ? "border-2 border-gold shadow-lift"
-                  : "border border-border shadow-soft"
-              }`}
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-display text-[1.25rem] font-bold text-foreground">
-                  {plan.type}
+        {/* CHANGE 8 - Value framing line */}
+        <motion.p
+          className="mb-8 text-center text-[0.95rem] leading-relaxed text-muted-foreground"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          Menos do que um curso online que você nunca termina — com atenção real, aula a aula.
+        </motion.p>
+
+        {/* Card */}
+        <div className="flex justify-center">
+          <motion.div
+            className="flex w-full max-w-lg flex-col overflow-hidden rounded-2xl border border-border shadow-md"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Top banner */}
+            <div className="bg-navy/95 px-6 py-5">
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-xs font-semibold uppercase tracking-[0.15em] text-gold">
+                  {plan.flag} {plan.type}
                 </span>
-                <span
-                  className={`rounded-full px-3 py-1 text-[0.74rem] font-semibold ${
-                    plan.highlight
-                      ? "bg-gold text-ink font-bold"
-                      : "bg-secondary text-secondary-foreground"
-                  }`}
-                >
-                  {plan.tag}
-                </span>
+                {plan.tag && (
+                  <span className="rounded-full bg-gold px-3 py-1 text-xs font-bold text-navy">
+                    {plan.tag}
+                  </span>
+                )}
               </div>
-
-              <div className="mt-5 flex items-end gap-1.5">
-                <span className="mb-1.5 font-display text-lg font-semibold text-muted-foreground">R$</span>
-                <span className="font-display text-[3.6rem] font-extrabold leading-none tracking-tight text-foreground">
+              <div className="flex items-start gap-1">
+                <span className="mt-2 text-xl font-semibold text-white">R$</span>
+                <span className="font-serif text-6xl font-bold leading-none text-white">
                   {plan.price}
                 </span>
-                <span className="mb-2 text-[0.9rem] text-muted-foreground">/ hora</span>
               </div>
-              <p className="mt-4 text-[0.98rem] leading-relaxed text-muted-foreground">
-                {plan.description}
-              </p>
+              <p className="mt-1 text-xs text-white/50">por hora · 60 minutos de aula</p>
+              <p className="mt-3 text-sm leading-relaxed text-white/80">{plan.description}</p>
+            </div>
 
-              <ul className="mt-7 flex flex-1 flex-col gap-3">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-[0.96rem] text-foreground/85">
-                    <Check className="mt-0.5 h-[1.1rem] w-[1.1rem] shrink-0 text-flame" strokeWidth={2.75} />
-                    {f}
+            {/* Features */}
+            <div className="flex flex-1 flex-col bg-cream px-6 py-5">
+              <ul className="mb-6 flex flex-1 flex-col gap-3">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-3 text-[15px] text-muted-foreground">
+                    <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-red">
+                      <Check size={8} className="text-white" strokeWidth={3} />
+                    </span>
+                    {feature}
                   </li>
                 ))}
               </ul>
 
-              <a
-                href={plan.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex w-full items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-whatsapp px-6 py-3.5 text-[0.98rem] font-semibold text-white transition-transform duration-150 ease-out-quart hover:-translate-y-0.5 active:scale-[0.98]"
-              >
-                <MessageCircle className="h-[1.15rem] w-[1.15rem]" strokeWidth={2.5} />
-                {plan.cta}
-              </a>
-              <p className="mt-3 text-center text-[0.8rem] text-muted-foreground">
-                Primeira aula gratuita. Sem cartão, sem contrato.
-              </p>
-            </Reveal>
-          ))}
+              {/* Free trial CTA */}
+              <div className="border-t border-gold/30 pt-5">
+                <p className="mb-3 text-center text-xs font-semibold uppercase tracking-[0.15em] text-red">
+                  ✦ Primeira aula gratuita
+                </p>
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-4 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:brightness-110"
+                >
+                  <MessageCircle size={16} />
+                  {plan.cta}
+                </a>
+                <p className="mt-2 text-center text-xs text-muted-foreground">
+                  Sem cartão · Sem contrato · Cancele quando quiser
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
-        <Reveal delay={0.15} className="mt-8 text-center text-[0.95rem] text-muted-foreground">
-          Quer misturar os dois formatos? Sem problema,{" "}
-          <a
-            href={WA_BOOK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-flame-deep underline underline-offset-4 transition-colors hover:text-foreground"
-          >
-            a gente conversa pelo WhatsApp
-          </a>
-          .
-        </Reveal>
+        {/* Bottom notes */}
+        <motion.div
+          className="mt-8 text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <p className="text-xs leading-relaxed text-muted-foreground">
+            💡 Não tem certeza qual formato escolher? Faça a aula experimental gratuita e decide depois.
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-foreground">
+            Quer misturar os dois formatos? Sem problema —{" "}
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-red underline underline-offset-2 transition-colors duration-200 hover:text-foreground"
+            >
+              conversamos pelo WhatsApp.
+            </a>
+          </p>
+        </motion.div>
       </div>
     </section>
   );

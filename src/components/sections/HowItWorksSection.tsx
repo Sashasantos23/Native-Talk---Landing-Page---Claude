@@ -1,58 +1,50 @@
-import { MessageCircle } from "lucide-react";
-import { Reveal } from "@/components/Reveal";
-import { WA_BOOK } from "@/lib/whatsapp";
+import { motion } from "framer-motion";
 
 const steps = [
-  { n: "01", title: "Mande uma mensagem", desc: "Pelo WhatsApp, me conte seu nível de inglês e o que você quer alcançar." },
-  { n: "02", title: "Aula experimental", desc: "A gente conversa pra entender onde você está e por onde começar. Gratuita, sem compromisso." },
-  { n: "03", title: "Plano sob medida", desc: "Você recebe um plano feito pra você e começamos a evoluir de forma consistente." },
-  { n: "04", title: "Você fala, com confiança", desc: "Semana após semana, o inglês vira parte natural da sua vida. Não como obrigação, como ferramenta." },
+  { num: "01", title: "Mande uma mensagem", desc: "Entre em contato pelo WhatsApp e me conte seu nível de inglês e seus objetivos." },
+  { num: "02", title: "Aula experimental", desc: "Conversamos para entender onde você está, o que trava, e por onde começar. Gratuita, sem compromisso." },
+  { num: "03", title: "Aulas personalizadas", desc: "Você recebe um plano sob medida e começamos a evoluir de forma consistente e prazerosa." },
+  { num: "04", title: "Você fala. Com confiança.", desc: "Semana após semana, sua confiança cresce e o inglês passa a fazer parte natural da sua vida — não como obrigação, mas como ferramenta." },
 ];
 
 const HowItWorksSection = () => {
   return (
-    <section id="como-funciona" className="bg-ink px-5 py-20 text-paper sm:px-7 sm:py-24 md:px-10 md:py-28 lg:px-12">
-      <div className="mx-auto max-w-7xl">
-        <Reveal className="max-w-2xl">
-          <h2 className="font-display text-[clamp(1.9rem,4vw,3rem)] font-extrabold leading-[1.05] tracking-tight text-paper">
-            Quatro passos pra começar.
-          </h2>
-          <p className="mt-4 text-[1.02rem] leading-relaxed text-paper/65">
-            Simples e sem burocracia. Em menos de 24h a sua primeira aula pode
-            estar agendada.
+    <section id="como-funciona" className="relative overflow-hidden bg-navy px-5 py-16 sm:px-7 sm:py-20 md:px-12 md:py-24 lg:px-16">
+      <div className="relative mx-auto max-w-6xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5 }}
+        >
+          <p className="mb-3 text-[0.75rem] font-semibold uppercase tracking-[0.15em] text-gold sm:mb-4 sm:text-[0.78rem]">
+            Como Funciona
           </p>
-        </Reveal>
+          <h2 className="mb-4 font-serif text-[clamp(1.8rem,4vw,3rem)] font-black leading-tight text-white sm:mb-5">
+            Quatro passos para começar
+          </h2>
+          <p className="max-w-[560px] text-base font-light leading-relaxed text-white/60">
+            Simples, rápido e sem burocracia. Em menos de 24h você pode ter sua primeira aula agendada.
+          </p>
+        </motion.div>
 
-        {/* Connector line on lg+ */}
-        <div className="relative mt-16 grid gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="pointer-events-none absolute inset-x-0 top-6 hidden h-px bg-gold/20 lg:block" />
+        <div className="mt-10 grid gap-8 sm:mt-14 sm:grid-cols-2 sm:gap-10 lg:grid-cols-4">
           {steps.map((step, i) => (
-            <Reveal key={step.n} delay={i * 0.1} className="relative">
-              {/* Gold step circle on navy — mirrors the logo's gold/navy split */}
-              <div className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-gold/60 bg-ink font-display text-[0.95rem] font-bold text-gold">
-                {step.n}
-              </div>
-              <h3 className="mt-5 font-display text-[1.2rem] font-bold text-paper">
-                {step.title}
-              </h3>
-              <p className="mt-2.5 text-[0.96rem] leading-relaxed text-paper/60">
-                {step.desc}
-              </p>
-            </Reveal>
+            <motion.div
+              key={step.num}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
+              <span className="-mb-2.5 block font-serif text-[3.5rem] font-black leading-none text-gold/15 sm:text-[4.5rem]">
+                {step.num}
+              </span>
+              <h4 className="mb-2 font-serif text-base font-bold text-white sm:mb-2.5 sm:text-lg">{step.title}</h4>
+              <p className="text-base leading-relaxed text-white/55">{step.desc}</p>
+            </motion.div>
           ))}
-        </div>
-
-        <Reveal delay={0.2} className="mt-14">
-          <a
-            href={WA_BOOK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="wa-glow inline-flex items-center gap-2.5 rounded-full bg-whatsapp px-7 py-4 text-[1.02rem] font-semibold text-white transition-transform duration-150 hover:-translate-y-0.5 active:scale-[0.98]"
-          >
-            <MessageCircle className="h-5 w-5" strokeWidth={2.5} />
-            Agendar aula gratuita
-          </a>
-        </Reveal>
+      </div>
       </div>
     </section>
   );

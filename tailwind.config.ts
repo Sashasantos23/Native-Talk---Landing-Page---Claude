@@ -7,78 +7,66 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "1.5rem",
+      padding: "2rem",
       screens: {
-        "2xl": "1280px",
+        "2xl": "1400px",
       },
     },
     extend: {
-      fontFamily: {
-        display: ['"Bricolage Grotesque"', '"Hanken Grotesk"', "sans-serif"],
-        sans: ['"Hanken Grotesk"', "ui-sans-serif", "system-ui", "sans-serif"],
-      },
       colors: {
-        border: "oklch(var(--border) / <alpha-value>)",
-        input: "oklch(var(--input) / <alpha-value>)",
-        ring: "oklch(var(--ring) / <alpha-value>)",
-        background: "oklch(var(--background) / <alpha-value>)",
-        foreground: "oklch(var(--foreground) / <alpha-value>)",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "oklch(var(--primary) / <alpha-value>)",
-          foreground: "oklch(var(--primary-foreground) / <alpha-value>)",
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "oklch(var(--secondary) / <alpha-value>)",
-          foreground: "oklch(var(--secondary-foreground) / <alpha-value>)",
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
-          DEFAULT: "oklch(var(--destructive) / <alpha-value>)",
-          foreground: "oklch(var(--destructive-foreground) / <alpha-value>)",
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
-          DEFAULT: "oklch(var(--muted) / <alpha-value>)",
-          foreground: "oklch(var(--muted-foreground) / <alpha-value>)",
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
         },
         accent: {
-          DEFAULT: "oklch(var(--accent) / <alpha-value>)",
-          foreground: "oklch(var(--accent-foreground) / <alpha-value>)",
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
-          DEFAULT: "oklch(var(--popover) / <alpha-value>)",
-          foreground: "oklch(var(--popover-foreground) / <alpha-value>)",
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: "oklch(var(--card) / <alpha-value>)",
-          foreground: "oklch(var(--card-foreground) / <alpha-value>)",
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
-        /* Brand aliases */
-        ink: {
-          DEFAULT: "oklch(var(--ink) / <alpha-value>)",
-          soft: "oklch(var(--ink-soft) / <alpha-value>)",
+        navy: "hsl(var(--navy))",
+        red: "hsl(var(--red))",
+        gold: "hsl(var(--gold))",
+        cream: "hsl(var(--cream))",
+        whatsapp: "hsl(var(--whatsapp))",
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
         },
-        paper: {
-          DEFAULT: "oklch(var(--paper) / <alpha-value>)",
-          2: "oklch(var(--paper-2) / <alpha-value>)",
-        },
-        flame: {
-          DEFAULT: "oklch(var(--flame) / <alpha-value>)",
-          deep: "oklch(var(--flame-deep) / <alpha-value>)",
-        },
-        gold: {
-          DEFAULT: "oklch(var(--gold) / <alpha-value>)",
-          deep: "oklch(var(--gold-deep) / <alpha-value>)",
-        },
-        whatsapp: "oklch(var(--whatsapp) / <alpha-value>)",
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 4px)",
-        sm: "calc(var(--radius) - 8px)",
-      },
-      transitionTimingFunction: {
-        "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "out-quart": "cubic-bezier(0.25, 1, 0.5, 1)",
-        "in-out-strong": "cubic-bezier(0.77, 0, 0.175, 1)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
         "accordion-down": {
@@ -91,8 +79,8 @@ export default {
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.24s cubic-bezier(0.16, 1, 0.3, 1)",
-        "accordion-up": "accordion-up 0.2s cubic-bezier(0.77, 0, 0.175, 1)",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
