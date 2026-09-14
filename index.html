@@ -182,6 +182,8 @@ html{scroll-behavior:smooth}
 .has-js .section{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
 .has-js .section.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.hero em{animation:none}#cursorglow{display:none}.has-js .section{opacity:1;transform:none;transition:none}}
+@media (hover: none),(pointer: coarse){#cursorglow{display:none}}
+@media (max-width:640px){nav .wrap{height:66px}.brandlock{gap:10px}.brandlock .logo{width:40px;height:40px}.brand{font-size:22px}nav .btn-gold{display:none}}
 
 .hero .wrap{position:relative;z-index:1}
 .starfield{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
@@ -383,7 +385,7 @@ html{scroll-behavior:smooth}
     document.querySelectorAll('.section').forEach(function(s){io.observe(s);});
   }catch(err){document.querySelectorAll('.section').forEach(function(s){s.classList.add('in');});}
   var g=document.getElementById('cursorglow');
-  if(g) addEventListener('pointermove',function(e){g.style.setProperty('--mx',e.clientX+'px');g.style.setProperty('--my',e.clientY+'px');},{passive:true});
+  if(g && matchMedia('(hover: hover) and (pointer: fine)').matches) addEventListener('pointermove',function(e){g.style.setProperty('--mx',e.clientX+'px');g.style.setProperty('--my',e.clientY+'px');},{passive:true});
 })();
 </script>
 
