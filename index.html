@@ -181,7 +181,7 @@ html{scroll-behavior:smooth}
 #cursorglow{position:fixed;inset:0;pointer-events:none;z-index:6;mix-blend-mode:screen;background:radial-gradient(360px circle at var(--mx,50%) var(--my,-300px),rgba(201,168,92,.5),transparent 62%)}
 .has-js .section{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
 .has-js .section.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.hero em{animation:none}#cursorglow{display:none}.has-js .section{opacity:1;transform:none;transition:none}}
+@media (prefers-reduced-motion:reduce){#cursorglow{display:none}.has-js .section{opacity:1;transform:none;transition:none}}
 @media (hover: none),(pointer: coarse){#cursorglow{display:none}}
 @media (max-width:640px){nav .wrap{height:66px}.brandlock{gap:10px}.brandlock .logo{width:40px;height:40px}.brand{font-size:22px}nav .btn-gold{display:none}}
 
@@ -190,7 +190,8 @@ html{scroll-behavior:smooth}
 .starfield i{position:absolute;display:block;border-radius:50%;background:#fff;opacity:.5;box-shadow:0 0 6px 1px rgba(255,255,255,.35);animation:twinkle var(--dur,4s) ease-in-out var(--del,0s) infinite}
 .starfield i.g{background:#E7D191;box-shadow:0 0 7px 1px rgba(201,168,92,.55)}
 @keyframes twinkle{0%,100%{opacity:.15;transform:scale(.75)}50%{opacity:.95;transform:scale(1.15)}}
-@media (prefers-reduced-motion:reduce){.starfield i{animation:none;opacity:.4}}
+@keyframes twinkleSoft{0%,100%{opacity:.3}50%{opacity:.9}}
+@media (prefers-reduced-motion:reduce){.starfield i{animation:twinkleSoft var(--dur,5s) ease-in-out var(--del,0s) infinite}}
 </style>
 </head>
 <body>
