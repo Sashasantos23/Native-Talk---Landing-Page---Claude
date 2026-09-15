@@ -228,7 +228,7 @@ html{scroll-behavior:smooth}
   </div>
 </div></nav>
 
-<header class="hero"><div class="starfield" aria-hidden="true"></div><div class="wrap"><div class="grid">
+<header class="hero"><div class="wrap"><div class="grid">
   <div>
     <span class="eyebrow">Americana nativa · Inglês de conversação</span>
     <h1 style="margin-top:22px">Você sabe inglês.<br>Só não consegue <em>falar</em> ainda.</h1>
@@ -350,7 +350,7 @@ html{scroll-behavior:smooth}
 </div></section>
 
 <section class="section final">
-  <div class="starfield" aria-hidden="true"></div>
+  
   <div class="wrap">
     <span class="flag"><span class="dot"></span> Vagas abertas esta semana — agenda limitada</span>
     <h2>Pronto(a) para falar inglês com uma nativa?</h2>
@@ -390,19 +390,5 @@ html{scroll-behavior:smooth}
 })();
 </script>
 
-<script>
-(function(){
-  document.querySelectorAll('.starfield').forEach(function(sf){
-    var n=22,html='';
-    for(var i=0;i<n;i++){
-      var x=(Math.random()*100).toFixed(2),y=(Math.random()*100).toFixed(2),
-          s=(Math.random()*1.6+1).toFixed(1),dur=(Math.random()*3+3).toFixed(1),
-          del=(Math.random()*4).toFixed(1),g=Math.random()<0.38?' class="g"':'';
-      html+='<i'+g+' style="left:'+x+'%;top:'+y+'%;width:'+s+'px;height:'+s+'px;--dur:'+dur+'s;--del:'+del+'s"></i>';
-    }
-    sf.innerHTML=html;
-  });
-})();
-</script>
 </body>
 </html>
