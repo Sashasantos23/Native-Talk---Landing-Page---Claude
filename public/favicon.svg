@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F7E9B4"/><stop offset=".22" stop-color="#D8B96A"/><stop offset=".44" stop-color="#9C7A2E"/><stop offset=".6" stop-color="#EAD68F"/><stop offset=".8" stop-color="#B79240"/><stop offset="1" stop-color="#8C6E29"/>
+    </linearGradient>
+    <clipPath id="b"><rect x="8" y="6" width="84" height="70" rx="15"/></clipPath>
+    <path id="s" d="M0,-4 L1.18,-1.62 L3.8,-1.24 L1.9,0.62 L2.35,3.24 L0,2 L-2.35,3.24 L-1.9,0.62 L-3.8,-1.24 L-1.18,-1.62 Z" fill="#fff"/>
+  </defs>
+  <path d="M27,72 L20,95 L47,74 Z" fill="url(#g)" stroke="#A2822F" stroke-width=".5"/>
+  <g clip-path="url(#b)">
+    <rect x="8" y="6" width="84" height="70" fill="#F4F1EA"/>
+    <g fill="#C21F2C"><rect x="8" y="6" width="84" height="10"/><rect x="8" y="26" width="84" height="10"/><rect x="8" y="46" width="84" height="10"/><rect x="8" y="66" width="84" height="10"/></g>
+    <rect x="8" y="6" width="38" height="40" fill="#0E1B3D"/>
+    <use href="#s" x="17" y="16"/><use href="#s" x="27" y="16"/><use href="#s" x="37" y="16"/>
+    <use href="#s" x="17" y="26"/><use href="#s" x="27" y="26"/><use href="#s" x="37" y="26"/>
+    <use href="#s" x="17" y="36"/><use href="#s" x="27" y="36"/><use href="#s" x="37" y="36"/>
+  </g>
+  <rect x="8" y="6" width="84" height="70" rx="15" fill="none" stroke="url(#g)" stroke-width="4.5"/>
+</svg>
